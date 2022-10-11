@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart';
-import 'package:phone_number_validator/model/json_dummy.dart';
-import 'package:phone_number_validator/model/json_model.dart';
-import 'package:phone_number_validator/model/json_placeholder.dart';
 import 'package:phone_number_validator/service/api_service.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,9 +14,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   TextEditingController number = TextEditingController();
   bool isLoaded = false;
-  List<JsonModel> numberList = [];
-  List<JsonPlaceholder> posts = [];
-  List<Users> list = [];
 
   Map<String, dynamic>? data;
 
@@ -73,7 +67,20 @@ class _HomePageState extends State<HomePage> {
                   height: MediaQuery.of(context).size.height * 0.7,
                   child: ListView(
                     children: [
-                      Text("${data!["location"]}"),
+                      data!["valid"] == true
+                          ? Text(
+                              " ${data!["phone"]} is VALID",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            )
+                          : Text("Invald"),
+                      ListTile(
+                        title: Text("${data!["country"]["name"]}"),
+                        subtitle: Text("${data!["location"]}"),
+                      ),
+                      ListTile(
+                        title: Text("${data!["type"]}"),
+                        subtitle: Text("${data!["carrier"]}"),
+                      )
                     ],
                   ),
                 ),
