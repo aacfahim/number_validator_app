@@ -4,6 +4,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 var baseURL =
     "https://phonevalidation.abstractapi.com/v1/?api_key=4a0a78a73de54e3d9c7a4bb61f03eda6&phone=";
 
+var placeholderURL = "https://jsonplaceholder.typicode.com/posts";
+
 showToast(String message) {
   return Fluttertoast.showToast(
       msg: message,
